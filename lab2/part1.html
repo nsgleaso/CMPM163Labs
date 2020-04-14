@@ -12,6 +12,58 @@
 		<script src="../three.js-master/build/three.js"></script>
 		<script>
 			// Our Javascript will go here.
+			
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera(75, 
+			window.innerWidth/window.innerHeight, 0.1, 1000);
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			document.body.appendChild(renderer.domElement);
+
+			var geometry = new THREE.BoxGeometry();
+			var geometry2 = new THREE.BoxGeometry();
+			var geometry3 = new THREE.BoxGeometry();
+			var material = new THREE.MeshBasicMaterial( {color: 0x284d8a} );
+			var material2 = new THREE.MeshBasicMaterial( {color: 0xfacade} );
+			var material3 = new THREE.MeshBasicMaterial( {color: 0x51e06e} );
+			var cube = new THREE.Mesh(geometry, material);
+			var cube2 = new THREE.Mesh(geometry2, material2);
+			var cube3 = new THREE.Mesh(geometry3, material3);
+			scene.add(cube);
+			scene.add(cube2);
+			scene.add(cube3);
+			cube2.position.y = 2;
+			cube3.position.y = -2;
+			var counter = 0;
+			var c3 = 1;
+			
+			camera.position.z = 5; //this moves the camera towards the viewer
+
+			function animate() {
+				requestAnimationFrame(animate);
+				renderer.render(scene, camera);
+				
+				geometry.rotateX(0.01);
+				geometry.rotateY(0.01);
+				
+				
+				geometry2.translate(0.1, 0, 0);
+				geometry2.rotateY(0.05);
+				
+				if(counter > 30)
+					c3 = -1;
+				else if(counter < -30)
+					c3 = 1;
+					
+				geometry3.translate(0, 0, 0.1*c3);
+				if(c3 == 1)
+					counter++;
+				else
+					counter--;
+			}
+			animate();
+
 		</script>
 	</body>
 </html>
