@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Lab 3: Shaders in Three.js</title>
+		<style>
+			body { margin: 0; }
+			canvas { display: block; }
+		</style>
+	</head>
+	<body>
+		<script src="../three.js-master/build/three.js"></script>
+		<script>
+			// setup the scene
+      			var scene = new THREE.Scene();
+      			var camera = new THREE.PerspectiveCamera(75, 
+window.innerWidth/window.innerHeight, 0.1, 1000);
+      			var renderer = new THREE.WebGLRenderer();
+      			renderer.setSize(window.innerWidth, window.innerHeight);
+      			document.body.appendChild(renderer.domElement);
+			camera.position.z = 5;
+			
+			// setup the cube
+				var geometry = new THREE.BoxGeometry();
+				var geometry2 = new THREE.BoxGeometry();
+      			var material = new THREE.MeshPhongMaterial( { color: 0xdddddd, 
+					specular: 0x00ff00, shininess: 30 });
+				var material2 = new THREE.MeshPhongMaterial( { color: 0xeb4034,
+					wireframe: true, specular: 0x36aeeb});
+      			var cube = new THREE.Mesh( geometry, material );
+				var cube2 = new THREE.Mesh( geometry, material2 );
+				
+     			scene.add(cube);
+				scene.add(cube2);
+				cube2.position.y = 2;
+
+			// add the light
+			var light = new THREE.PointLight(0xffffff, 1, 1000);
+			light.position.set(10, 10, 10);
+			scene.add(light);
+			
+			//PART 2 CODE
+			
+			THREE.Cache.enabled = true;
+			var mili = 0.0;
+			var timer = 0.0
+			var count = 0;
+			var loader = new THREE.FileLoader();
+			var fshader, vshader, mfshader;
+			var myUniforms;
+			
+			var geometry1,myGeometry, material1, myMaterial, mesh1, myMesh;
+
+			function addCoolCube() {
+			console.log(count);
+				if(count == 2) {
+					let uniforms = {
+						colorB: {type: 'vec3', value: new THREE.Color(0x4f95ff)},
+						colorA: {type: 'vec3', value: new THREE.Color(0xf03a40)}
+					};
+
+					geometry1 = new THREE.BoxGeometry(1, 1, 1);
+					material1 =  new THREE.ShaderMaterial({
+						uniforms: uniforms,
+						fragmentShader: fshader,
+						vertexShader: vshader,
+						precision: "mediump"});
+
+					mesh1 = new THREE.Mesh(geometry1, material1);
+					mesh1.position.x = 2;
+					scene.add(mesh1);
+				}	
+			}
+			
+			function addMyCube() {
+			console.log(count);
+				if(count == 3) {
+					myUniforms = {
+						u_time: {type: 'f', value: 1.0},
+						u_resolution: {type: 'vec2', value: new THREE.Vector2()}
+					};
+					//take resolution of renderer and put it in u_resolution
+					myUniforms.u_resolution.value.x = renderer.domElement.width;
+					
+					myGeometry = new THREE.BoxGeometry(1, 1, 1);
+					myMaterial =  new THREE.ShaderMaterial({
+						uniforms: myUniforms,
+						fragmentShader: mfshader,
+						vertexShader: vshader,
+						precision: "mediump"});
+
+					myMesh = new THREE.Mesh(myGeometry, myMaterial);
+					myMesh.position.x = -2;
+					scene.add(myMesh);
+				}	
+			}
+			
+			loader.load('shaders/vertexShader.vert',
+				// onLoad callback
+				function (data) {
+					console.log(data); // output the text to the console
+					vshader = data;
+					count += 1;
+					addCoolCube(); 
+					
+				},
+				// onProgress callback
+				function (xhr) {
+					console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+				},
+				// onError callback
+				function (err) {
+					console.error('An error happened');
+				});
+
+			loader.load('shaders/fragmentShader.frag',
+				// onLoad callback
+				function (data) {
+					console.log(data); // output the text to the console
+					fshader = data;
+					count += 1;
+					addCoolCube(); 
+				},
+				// onProgress callback
+				function (xhr) {
+					console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+				},
+				// onError callback
+				function (err) {
+					console.error('An error happened');
+				});
+
+			loader.load('shaders/myFragmentShader.frag',
+				// onLoad callback
+				function (data) {
+					console.log(data); // output the text to the console
+					mfshader = data;
+					count += 1;
+					addMyCube(); // we will write this method
+				},
+				// onProgress callback
+				function (xhr) {
+					console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+				},
+				// onError callback
+				function (err) {
+					console.error('An error happened');
+				});
+			
+			function animate() {
+				//PART 1 ANIMATE
+				requestAnimationFrame(animate);
+				geometry.rotateX(0.01);
+				geometry.rotateY(0.01);
+
+				//console.log(mili);
+				
+				//PART 2 ANIMATE
+				if(geometry1) {
+					geometry1.rotateX(0.01);
+					geometry1.rotateY(0.01);
+				}	
+				if(myGeometry) {
+					myGeometry.rotateX(0.01);
+					myGeometry.rotateY(0.01);
+					myUniforms.u_time.value += 0.05;
+					
+					
+				}	
+				
+				renderer.render(scene, camera);
+			}
+			animate();
+			
+				
+
+		</script>
+	</body>
+</html>
+
