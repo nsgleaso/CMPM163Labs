@@ -2,6 +2,13 @@
 
 This is my (Nicholas Gleason) repository for all lab projects for CMPM 163 of Spring Quarter 2020
 
+## Lab 4
+
+Answers to step 24:
+A. x = 7u
+B. y = 7 - 7v
+C. white
+
 ## Lab 3
 
 Link to Capture: https://drive.google.com/file/d/18G5C1GARodSfN0K0Q738V8aniOBj6Hjb/view?usp=sharing
