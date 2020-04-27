@@ -6,16 +6,16 @@ This is my (Nicholas Gleason) repository for all lab projects for CMPM 163 of Sp
 Link to Capture: https://drive.google.com/file/d/1bPI3MdOv0q_Cn4KNy-NUdXCaTGNYMFqy/view?usp=sharing
 
 Description of Cubes:
--Left Cube: Part 1 Tutorial w/o normal map
--Center Cube: Part 1 Tutorial w/ normal map
--Top Cube: Part 1 myTexture w/ my normal Map
--Right Cube: Part 2 Tutorial Shader Texture
--Bottom Cube: Part 2 Tiled Shader Texture
+- Left Cube: Part 1 Tutorial w/o normal map
+- Center Cube: Part 1 Tutorial w/ normal map
+- Top Cube: Part 1 myTexture w/ my normal Map
+- Right Cube: Part 2 Tutorial Shader Texture
+- Bottom Cube: Part 2 Tiled Shader Texture
 
 Answers to step 24:
-A. x = 7u
-B. y = 7 - 7v
-C. white
+- A. x = 7u
+- B. y = 7 - 7v
+- C. white
 
 ## Lab 3
 
