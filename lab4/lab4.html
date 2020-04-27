@@ -10,6 +10,27 @@
 	</head>
 	<body>
 		<script src="../three.js-master/build/three.js"></script>
+		<script id="myVertexShader" type="x-shader/x-vertex">
+			// code for vertex shader
+			varying vec2 vUv;
+			void main() {
+				vUv = uv;
+				vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+				gl_Position = projectionMatrix * modelViewPosition;
+			}
+		</script>
+
+		<script id="myFragmentShader" type="x-shader/x-fragment">
+			// code for fragment shader
+			uniform sampler2D texture1;
+			varying vec2 vUv;
+			void main() {
+				vec4 tile = texture2D(texture1, vUv*3.0);
+				gl_FragColor = tile;
+			}
+		</script>
+
+
 		<script>
 			
 			// setup the scene
@@ -59,10 +80,9 @@
 
 			function addTextureShaderCube() {
 				if(count == 2) {
-					let uniforms = {
-						colorB: {type: 'vec3', value: new THREE.Color(0xACB6E5)},
-						colorA: {type: 'vec3', value: new THREE.Color(0x74ebd5)}
-					};
+					var uniforms = {texture1: { type: "t", value: 
+						THREE.ImageUtils.loadTexture("165.jpg")}};
+
 		
 					geometry1 = new THREE.BoxGeometry(1, 1, 1);
 					material1 =  new THREE.ShaderMaterial({
@@ -76,9 +96,28 @@
 					scene.add(mesh1);
 				}
 			}
+			
+			//my Tiled Cube Function
+			function addMyTextureShaderCube() {
+				var texture = THREE.ImageUtils.loadTexture("176.jpg")
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
+				var uniforms = {
+					texture1: { type: "t", value: texture}
+				};
 
-			
-			
+				
+				geometry1 = new THREE.BoxGeometry(1, 1, 1);
+				material1 =  new THREE.ShaderMaterial({
+					uniforms: uniforms,
+					vertexShader: document.getElementById('myVertexShader').textContent,
+					fragmentShader: document.getElementById('myFragmentShader').textContent,
+					precision: "mediump"});
+				mesh2 = new THREE.Mesh(geometry1, material1);
+				mesh2.position.y = -2;
+				scene.add(mesh2);
+				
+			}
 			loader.load('shaders/vertexShader.vert',
 			
 				// onLoad callback
@@ -116,6 +155,8 @@
 				}
 			);
 			
+			addMyTextureShaderCube();
+			
 
 			var aCount = 0;
 			var inc = 1;
@@ -123,11 +164,11 @@
 				requestAnimationFrame(animate);
 				renderer.render(scene, camera);
 				aCount++;
-				if (aCount > 50 || aCount < 0){
+				if (aCount > 100 || aCount < 0){
 					inc *= -1;
 					aCount = 0;
 				}
-				light.position.y += inc;
+				light.position.x += inc;
 			}
 			animate();
 
