@@ -8,7 +8,7 @@ Link to Part A: https://drive.google.com/file/d/1aFUX73jFgzkhsL4kgoXkHjK9wiOiJ8G
 
 Link to Part B: https://drive.google.com/file/d/16oih9PNAA7MsW9t_9S-AEGau3z54Q39P/view?usp=sharing
 
-Link to Part C: https://drive.google.com/file/d/13zUleRhFueq8A1duuYCDa3dK8xnd037r/view?usp=sharing
+Link to Part C(my particle effect): https://drive.google.com/file/d/13zUleRhFueq8A1duuYCDa3dK8xnd037r/view?usp=sharing
 
 ## Lab 4
 Link to Capture: https://drive.google.com/file/d/1bPI3MdOv0q_Cn4KNy-NUdXCaTGNYMFqy/view?usp=sharing
