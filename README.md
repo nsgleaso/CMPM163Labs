@@ -8,7 +8,8 @@ Link to Part A: https://drive.google.com/file/d/1aFUX73jFgzkhsL4kgoXkHjK9wiOiJ8G
 
 Link to Part B: https://drive.google.com/file/d/16oih9PNAA7MsW9t_9S-AEGau3z54Q39P/view?usp=sharing
 
-Link to Part C(my particle effect): https://drive.google.com/file/d/13zUleRhFueq8A1duuYCDa3dK8xnd037r/view?usp=sharing
+Link to Part C (my particle effect): https://drive.google.com/file/d/13zUleRhFueq8A1duuYCDa3dK8xnd037r/view?usp=sharing
+- For Part C, I made all of the y velocity values for the particles negative so that way they fall slowly. When a particle reaches the bottom of the screen, it is respawned back at the top so that way the scene is endlessly snowing.  In addition, the particles drift occasionally from left to right. I also added a snowflake sprite to the particles so that way it makes it look like snow is falling. 
 
 ## Lab 4
 Link to Capture: https://drive.google.com/file/d/1bPI3MdOv0q_Cn4KNy-NUdXCaTGNYMFqy/view?usp=sharing
