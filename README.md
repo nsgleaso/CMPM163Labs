@@ -8,6 +8,8 @@ Link to screenshot of texture with corrected aspect ratio: https://drive.google.
 
 Link to shadertoy project with textured circle: https://www.shadertoy.com/view/3dfBDs
 
+Link to cool blackhole shader found on shadertoy: https://www.shadertoy.com/view/3slcWr
+
 ## Lab 5
 For this lab, I did Part 2 (the Three.js project)
 
