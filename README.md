@@ -1,6 +1,13 @@
 # CMPM163Labs
 
 This is my (Nicholas Gleason) repository for all lab projects for CMPM 163 of Spring Quarter 2020
+## Lab 6
+For this lab, I did part 2 (the shadertoy project)
+
+Link to screenshot of texture with corrected aspect ratio: https://drive.google.com/file/d/17AOHBTRVl4YaDzway-gUg2h3B7T7zp6V/view?usp=sharing
+
+Link to shadertoy project with textured circle: https://www.shadertoy.com/view/3dfBDs
+
 ## Lab 5
 For this lab, I did Part 2 (the Three.js project)
 
