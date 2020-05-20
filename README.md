@@ -1,6 +1,20 @@
 # CMPM163Labs
 
 This is my (Nicholas Gleason) repository for all lab projects for CMPM 163 of Spring Quarter 2020
+
+## Lab 7
+For this lab, I did part 2 (Three.js Mesh Manipulation)
+
+Unfortunately, I was not able to get in contact with my partner.  I could not find his email nor his name on the class discord.
+
+Link to part A screenshot of texture: https://drive.google.com/file/d/1TZOVGxZ5STnprvOwIwsycyXkVOj3crdj/view?usp=sharing
+
+Link to part A screenshot of height map: https://drive.google.com/file/d/1SxFTJx398XhIzAwTsihElwAi_ov5dtll/view?usp=sharing
+
+Link to part B capture of wave effect: https://drive.google.com/file/d/1_4QJ2bbDcAUvX0ma6PinYd7sApo1FRvj/view?usp=sharing
+
+Link to part C capture of custom mesh manipulation: https://drive.google.com/drive/u/1/folders/15yyYmL8W4QxRNdfc2ZWVrLDtC38szA8G
+
 ## Lab 6
 For this lab, I did part 2 (the shadertoy project)
 
