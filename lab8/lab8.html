@@ -10,6 +10,29 @@
 	</head>
 	<body>
 		<script src="../three.js-master/build/three.js"></script>
+		<script id="vertexShader" type="x-shader/x-vertex">
+			// code for vertex shader
+			uniform sampler2D heightMap1;
+			varying vec2 vUv;
+
+			void main() {
+				vUv = uv;
+				vec4 heightColor = texture2D(heightMap1, uv);
+				vec3 newPosition = position + normal * 1.0 * heightColor.r;
+				vec4 modelViewPosition = modelViewMatrix * vec4(newPosition, 1.0);
+				gl_Position = projectionMatrix * modelViewPosition;
+			}
+
+		</script>
+
+		<script id="fragmentShader" type="x-shader/x-fragment">
+			// code for fragment shader
+			uniform sampler2D texture1;
+			varying vec2 vUv;
+			void main() {
+				gl_FragColor = texture2D(texture1, vUv);
+			}
+		</script>
 		<script>
 			// setup the scene
       			var scene = new THREE.Scene();
@@ -20,10 +43,29 @@
 			camera.position.z = 10;
 			camera.position.y = 3;
 			camera.lookAt(0,0,0);
+			
+			//Mountain
+			var context = initContext('canvas','2d'); // initialize the canvas
+			loadImage('myNoise5.png',context); // load the perlin image
+			
+			var uniforms = {
+				texture1: { type: "t", value:THREE.ImageUtils.loadTexture("myColoredTexture.png")},
+				heightMap1: { type: "t",value:THREE.ImageUtils.loadTexture("myTexture.png")}
+			};
+			
+			var material = new THREE.ShaderMaterial({ uniforms: uniforms, 
+			vertexShader: document.getElementById('vertexShader').textContent, 
+			fragmentShader: document.getElementById('fragmentShader').textContent});
+
+			var plane = new THREE.Mesh(new THREE.PlaneGeometry(50, 25, 200, 1000), material);
+			plane.position.z = 10;
+			plane.position.y = -12;
+			plane.rotation.x = -Math.PI / 2;
+			scene.add(plane);
 
 			// PlaneGeometry
 			const mat = new THREE.MeshPhongMaterial({color:0x4f4f4f, Shininess:100, side:THREE.DoubleSide});
-			var planeSize = 30;
+			var planeSize = 50;
 			var p = new THREE.PlaneGeometry(planeSize, planeSize, 100, 100);
 			var plane = new THREE.Mesh(p, mat);
 			var planeCenter = new THREE.Vector3(0,-parseInt(planeSize/4),-planeSize/2);
@@ -83,6 +125,8 @@
 				imageObj.src = imageSource;
 			}
 
+			
+
 			// since this method is only called when the image is loaded, 
 			//we know we have the image pixel data
 			function readImage(imageData) {
@@ -99,12 +143,17 @@
 				// now noiseData is a list of semi-random values from 0 to 255
 				// building generation code will go here:
 				var i = 0;
+				var r = 0;
 				for(var r = -planeSize/2; r < planeSize/2; r++) {
 					for(var c = -planeSize/2; c < planeSize/2; c++) {
 						var geometry = new THREE.BoxGeometry();
-						var material = new THREE.MeshPhongMaterial({color:0x00ff00});
+
+						var material = new THREE.MeshPhongMaterial({ color:0x00ff00});
+						
 						var cube = new THREE.Mesh(geometry, material);
-						cube.scale.y = Math.random() * (noiseData[i]/200*10);
+						cube.scale.y = Math.random() * (noiseData[i]/255*5);
+						console.log(noiseData[i]);
+						material.color = new THREE.Color('rgb('+(noiseData[i]*8)+','+(255-noiseData[i]%50)+','+(180+noiseData[i]%220)+')');
 						cube.scale.x = .7;
 						cube.scale.z = .7;
 						cube.position.z = planeCenter.z + c + cube.scale.z/2;
@@ -116,8 +165,7 @@
 				}
 			}
 
-		var context = initContext('canvas','2d'); // initialize the canvas
-		loadImage('perlin_34_34.jpg',context); // load the perlin image
+			
 
 			
 			
