@@ -2,6 +2,20 @@
 
 This is my (Nicholas Gleason) repository for all lab projects for CMPM 163 of Spring Quarter 2020
 
+## Lab 8
+For this lab, I did part 2 (Three.js City Building)
+
+My partner, Matthew Hoover, did Part 1.  For his creative portion, Matthew created a medieval style village by generating cabins with spaced out grassy areas.  I really liked the models that Matthew used, in that it really reminded me of games like Skyrim.  The main thing I learned from Matthew's project is how to create procedurally generated and highly detailed villages/cities.
+
+In the original image, I was inspired by the two groups of tall buildings, trees near the lower buildings, and the large hill in the background.  As a result, I made a custom heightmap for the city in a way that two groups of tall buildings, and smaller "park" areas would form.  In addition, I also create a second plane with it's own heightmap and texture for the hills in the background.
+
+Link to inspirational image: https://drive.google.com/file/d/18dtpHenl_OwiiPcB2RZHSCdIXG7kILP1/view?usp=sharing
+
+Link to Custom City Screenshot: https://drive.google.com/file/d/1JVtLpjQZNW05Zmb2Y90EaY-3BCTp0cXi/view?usp=sharing
+
+Another Screenshot from a different angle: https://drive.google.com/file/d/1XCB0Q6cinyjq4GVpripAFXZGe1Z9JdXG/view?usp=sharing
+
+
 ## Lab 7
 For this lab, I did part 2 (Three.js Mesh Manipulation)
 
